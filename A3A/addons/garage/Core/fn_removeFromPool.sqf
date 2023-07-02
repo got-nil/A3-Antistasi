@@ -20,7 +20,8 @@
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
-params [["_UID", "", [""]], ["_player", objNull, [objNull]]];
+params [["_UID", "", [""]], ["_player", objNull, [objNull]], "", "", ["_vehicle", objNull, [objNull]]];
+diag_log _veh;
 Trace_1("Removing vehicles from garage with UID: %1", _UID);
 if (_UID isEqualTo "") exitWith {false};
 
@@ -63,10 +64,17 @@ if (!isNull player) then {
     } forEach HR_GRG_Cats;
 };
 
+//attach death hook for logging purposes
+_vehicle addEventHandler ["killed", {
+    params ["_unit", "_killer"];
+    [text format ["Unit destroyed | netId: %1 | Killer: %2", netId _unit, _killer]] remoteExec ["diag_log"];
+}];
+
 //logging is low priority do it after done modifying the pool
 {
     (_x#2) params ["_dispName", "", "", "_UID"];
-    Info_4("By: %1 [%2] | Type: %3 | Vehicle ID: %4", name _player, _UID, _dispName, _x#1);
+    diag_log _vehicle;
+    Info_5("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | netId: %5", name _player, _UID, _dispName, _x#1, text (netId _vehicle));
 } forEach _toRemove;
 
 true

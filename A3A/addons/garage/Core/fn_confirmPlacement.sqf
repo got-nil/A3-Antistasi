@@ -259,6 +259,7 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
         private _state = [HR_GRG_dispVehicle] call HR_GRG_fnc_getState;
         private _pos = HR_GRG_pos;
         private _dir = HR_GRG_dir;
+        private _vehicle = [];
         call HR_GRG_cleanUp;
 
         //place vehicle if confirming placement
@@ -299,14 +300,18 @@ HR_GRG_EH_keyDown = findDisplay 46 displayAddEventHandler ["KeyDown", {
             };
             _veh spawn {sleep 0.5;_this allowDamage true;_this enableSimulation true; { _x allowDamage true; } forEach (attachedObjects _this); };
             _veh call HR_GRG_fnc_vehInit;
+            diag_log format ["After fnc_vehInit: %1", _veh];
             if !(HR_GRG_usePool) then {[_veh,HR_GRG_CP_callBack, "Placed"] call HR_GRG_fnc_callbackHandler};
+            diag_log format ["After HR_GRG_usePool: %1", _veh];
+            _vehicle = _veh;
 
             true;
         } else { false };
         //handle garage pool changes
         if (HR_GRG_usePool) then {
             private _fnc = if (_placed) then {"HR_GRG_fnc_removeFromPool"} else {"HR_GRG_fnc_releaseAllVehicles"};
-            [clientOwner, player, _fnc] remoteExecCall ["HR_GRG_fnc_execForGarageUsers", 2]; //run code on server as HR_GRG_Users is maintained ONLY on the server
+            diag_log format ["Before HR_GRG_fnc_execForGarageUsers: %1", _vehicle];
+            [clientOwner, player, _fnc, _vehicle] remoteExecCall ["HR_GRG_fnc_execForGarageUsers", 2]; //run code on server as HR_GRG_Users is maintained ONLY on the server
         };
     };
 

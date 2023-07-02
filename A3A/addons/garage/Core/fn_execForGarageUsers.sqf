@@ -7,6 +7,7 @@ Arguments:
 0. <Int> Client id
 1. <Object> Player to pass to the function along with the player UID
 2. <String> Function to be executed
+3. <String> [Optional] Extra parameter
 
 Return Value:
 <Nil/String> RemoteExecCall return
@@ -20,9 +21,10 @@ Example:
 
 License: MIT License
 */
-params ["_client", "_player", "_fnc"];
+params ["_client", "_player", "_fnc", "_vehicle"];
+diag_log format ["execForGarageUsers: %1", _vehicle];
 private _UID = getPlayerUID _player;
 private _recipients = +HR_GRG_Users;
 _recipients pushBackUnique 2;
 _recipients pushBackUnique _client;
-[_UID, _player] remoteExecCall [_fnc,_recipients];
+[_UID, _player, "", "", _vehicle] remoteExecCall [_fnc,_recipients];

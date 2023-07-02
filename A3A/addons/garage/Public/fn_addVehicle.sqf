@@ -162,6 +162,7 @@ private _addVehicle = {
     private _cat = [_class] call HR_GRG_fnc_getCatIndex;
     if (_cat isEqualTo -1) exitWith {};
     _catsRequiringUpdate pushBackUnique _cat;
+    private _netId = netId _this;
 
     private _source = [
         [_this] call HR_GRG_fnc_isAmmoSource
@@ -190,7 +191,7 @@ private _addVehicle = {
         [_sourceIndex] call HR_GRG_fnc_declairSources;
     };
 
-    Info_6("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | Lock: %5 | Source: %6", name _player, getPlayerUID _player, cfgDispName(_class), _vehUID, _locking, _sourceIndex);
+    Info_7("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | netId: %5 | Lock: %6 | Source: %7", name _player, getPlayerUID _player, cfgDispName(_class), _vehUID, _netId, _locking, _sourceIndex);
 };
 
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};
