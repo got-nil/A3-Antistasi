@@ -191,7 +191,7 @@ private _addVehicle = {
         [_sourceIndex] call HR_GRG_fnc_declairSources;
     };
 
-    Info_7("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | netId: %5 | Lock: %6 | Source: %7", name _player, getPlayerUID _player, cfgDispName(_class), _vehUID, _netId, _locking, _sourceIndex);
+    Info_8("By: %1 [%2] | Class: %3 | Type: %4 | Vehicle ID: %5 | netId: %6 | Lock: %7 | Source: %8", name _player, getPlayerUID _player, _class, cfgDispName(_class), _vehUID, _netId, _locking, _sourceIndex);
 };
 
 private _locking = if (_lockUID isEqualTo "") then {false} else {true};

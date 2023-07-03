@@ -67,14 +67,14 @@ if (!isNull player) then {
 //attach death hook for logging purposes
 _vehicle addEventHandler ["killed", {
     params ["_unit", "_killer"];
-    [text format ["Unit destroyed | netId: %1 | Killer: %2", netId _unit, _killer]] remoteExec ["diag_log"];
+    [text format ["Unit destroyed | Class: %1 | netId: %2 | Killer: %3", typeOf _unit, netId _unit, _killer]] remoteExec ["diag_log"];
 }];
 
 //logging is low priority do it after done modifying the pool
 {
-    (_x#2) params ["_dispName", "", "", "_UID"];
+    (_x#2) params ["_dispName", "_class", "", "_UID"];
     diag_log _vehicle;
-    Info_5("By: %1 [%2] | Type: %3 | Vehicle ID: %4 | netId: %5", name _player, _UID, _dispName, _x#1, text (netId _vehicle));
+    Info_6("By: %1 [%2] | Class: %3 | Type: %4 | Vehicle ID: %5 | netId: %6", name _player, _UID, _class, _dispName, _x#1, text (netId _vehicle));
 } forEach _toRemove;
 
 true
