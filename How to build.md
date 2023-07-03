@@ -18,6 +18,7 @@
 - Open `DSUtils` through Arma 3 Tools
 - Add the `build/A3A/addons` folder as the source directory
 - Use the folder button next to `Private key` to select the `antistasi.biprivatekey`
+- Select `Override signatures` if you already have signatures in the build folder
 - Select `Process files` in the bottom right, then yes when asking if you want to proceed
     - To check if it worked, select `Check signatures` and set `A3A/Keys` as the keys directory and `build/A3A/addons` as the addons directory. There should be no errors if the files are signed correctly.
 
