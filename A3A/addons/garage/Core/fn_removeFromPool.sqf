@@ -74,7 +74,7 @@ _vehicle addEventHandler ["killed", {
 {
     (_x#2) params ["_dispName", "_class", "", "_UID"];
     diag_log _vehicle;
-    Info_6("By: %1 [%2] | Class: %3 | Type: %4 | Vehicle ID: %5 | netId: %6", name _player, _UID, _class, _dispName, _x#1, text (netId _vehicle));
+    Info_5("By: %1 [%2] | Class: %3 | Type: %4 | netId: %5", name _player, _class, _dispName, _x#1, text (netId _vehicle));
 } forEach _toRemove;
 
 true
