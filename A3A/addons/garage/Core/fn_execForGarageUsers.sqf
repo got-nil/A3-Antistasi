@@ -22,7 +22,6 @@ Example:
 License: MIT License
 */
 params ["_client", "_player", "_fnc", "_vehicle"];
-diag_log format ["execForGarageUsers: %1", _vehicle];
 private _UID = getPlayerUID _player;
 private _recipients = +HR_GRG_Users;
 _recipients pushBackUnique 2;
