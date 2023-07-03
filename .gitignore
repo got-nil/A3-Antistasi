@@ -8,6 +8,7 @@ build
 *.pbo.bak
 *.bat
 AntistasiBuilder.cfg
+antistasi.txt
 
 #Ignore mission files that have been copied to A3-Antistasi
 A3-Antistasi/description.ext
