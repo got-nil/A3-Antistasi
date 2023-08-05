@@ -73,6 +73,7 @@ _vehicle addEventHandler ["killed", {
 //logging is low priority do it after done modifying the pool
 {
     (_x#2) params ["_dispName", "_class", "", "_UID"];
+    Info_1("List: %1", _class);
     Info_5("By: %1 [%2] | Class: %3 | Type: %4 | netId: %5", name _player, getPlayerUID _player, _class, _dispName, text (netId _vehicle));
 } forEach _toRemove;
 
