@@ -19,7 +19,7 @@ private _vehicleAA = [];
 
 ["vehiclesPlane", ["I_C_Plane_Civil_01_F"]] call _fnc_saveToTemplate;
 
-["vehiclesCivCar", ["C_Offroad_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Offroad_01_F", "C_SUV_01_F"]] call _fnc_saveToTemplate;
+private _vehiclesCivCar = ["C_Offroad_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_SUV_01_F"];
 ["vehiclesCivTruck", ["C_Van_01_transport_F", "C_Van_02_transport_F", "C_Van_02_vehicle_F"]] call _fnc_saveToTemplate;
 ["vehiclesCivHeli", ["C_Heli_Light_01_civil_F"]] call _fnc_saveToTemplate;
 ["vehiclesCivBoat", ["C_Boat_Civil_01_F", "C_Rubberboat"]] call _fnc_saveToTemplate;
@@ -38,10 +38,14 @@ private _staticAA = ["I_static_AA_F"];
 ["breachingExplosivesAPC", [["DemoCharge_Remote_Mag", 1]]] call _fnc_saveToTemplate;
 ["breachingExplosivesTank", [["SatchelCharge_Remote_Mag", 1], ["DemoCharge_Remote_Mag", 2]]] call _fnc_saveToTemplate;
 
+if (allowDLCExpansion) then {
+    _vehiclesCivCar append ["C_Offroad_02_unarmed_F"];
+};
+["vehiclesCivCar", _vehiclesCivCar] call _fnc_saveToTemplate;
 
 if (allowDLCWS) then {
   _vehicleAA append ["I_Tura_Truck_02_aa_lxWS"];
-  _staticAA insert [0, "I_Tura_ZU23_lxWS"];
+  _staticAA insert [0, ["I_Tura_ZU23_lxWS"]];
 };
 ["vehiclesAA", _vehicleAA] call _fnc_saveToTemplate;
 ["staticAA", _staticAA] call _fnc_saveToTemplate;
